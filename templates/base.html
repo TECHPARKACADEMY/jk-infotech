@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{% block title %}JK INFO TECH - Corporate Hardware Showroom & Services{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+</head>
+<body>
+
+    <!-- Glass Navbar with Official Logo Image -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="logo-wrapper">
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="JK INFO TECH LOGO" class="brand-logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}">About Us</a></li>
+                <li><a href="{{ url_for('services') }}" class="{% if request.path == '/services' %}active{% endif %}">Services</a></li>
+                <li><a href="{{ url_for('products') }}" class="{% if request.path == '/products' %}active{% endif %}">Products</a></li>
+                <li><a href="{{ url_for('training') }}" class="{% if request.path == '/training' %}active{% endif %}">Training & Projects</a></li>
+                <li><a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}">Contact Us</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Connect Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Professional Business Layout Footer -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>JK INFO TECH</h3>
+                <p>Complete Corporate Solution For All Your IT Requirements. Premium multi-brand showroom sales, high-definition CCTV installations, and enterprise scale network setups.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About Us</a></li>
+                    <li><a href="{{ url_for('services') }}">Services</a></li>
+                    <li><a href="{{ url_for('products') }}">Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Our Framework</h4>
+                <ul>
+                    <li><a href="{{ url_for('services') }}">CCTV Installation</a></li>
+                    <li><a href="{{ url_for('services') }}">Network Design</a></li>
+                    <li><a href="{{ url_for('services') }}">AMC System Management</a></li>
+                    <li><a href="{{ url_for('training') }}">Academic Projects</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+    <h4>Showroom Desk</h4>
+    
+    <div class="contact-item-row">
+        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="contact-text">61/4, Alagappapuram, College Railway Road, Karaikudi - 630003.</div>
+    </div>
+
+    <!-- Phone Component -->
+    <div class="contact-item-row">
+        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="contact-text">
+            +91 80568 28383<br>
+            +91 80158 28383<br>
+            04565-230383
+        </div>
+    </div>
+
+    <!-- Web Component -->
+    <div class="contact-item-row">
+        <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="contact-text">www.jkinfotechindia.com</div>
+    </div>
+</div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

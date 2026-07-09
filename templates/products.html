@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Product Showroom - TechCore Hardware{% endblock %}
+{% block content %}
+
+<section class="section-padding">
+    <h2 class="section-title">Hardware Showroom Portfolio</h2>
+    <div class="grid-4">
+        <!-- Template Product Loop Example -->
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/desktop-systems.jfif') }}" alt="Desktop Systems">
+            </div>
+            <h3>Business Desktops</h3>
+            <p>Intel i5/i7 Corporate Editions</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/laptap.jfif') }}" alt="Laptops">
+            </div>
+            <h3>Enterprise Laptops</h3>
+            <p>Slim high-performance units</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/printer.jfif') }}" alt="Printers">
+            </div>
+            <h3>Laser Printers</h3>
+            <p>Enterprise Network Printing Units</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/cctv.jfif') }}" alt="CCTV">
+            </div>
+            <h3>IP CCTV Cameras</h3>
+            <p>4K AI Detection Enabled</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/routers.jfif') }}" alt="Router">
+            </div>
+            <h3>Enterprise Routers</h3>
+            <p>Dual-WAN High Bandwidth</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/switch.jfif') }}" alt="Switch">
+            </div>
+            <h3>Managed Switches</h3>
+            <p>24-Port PoE Gigabit Layouts</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/ups.jfif') }}" alt="UPS">
+            </div>
+            <h3>Online UPS Systems</h3>
+            <p>Pure Sine Wave Central Power</p>
+        </div>
+        <div class="premium-card">
+            <div class="product-img-box">
+                <img src="{{ url_for('static', filename='images/ssd.jfif') }}" alt="SSD">
+            </div>
+            <h3>NVMe PCIe SSDs</h3>
+            <p>High speed enterprise storage</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
