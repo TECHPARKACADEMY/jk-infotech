@@ -196,7 +196,7 @@ body {
     align-items: center;
     
     /* Dynamic clean name without any network white spaces */
-    background: url('/static/images/hero-bg.jpg') no-repeat center center;
+   background: url('/static/images/hero-bg.JPG') no-repeat center center;
     background-size: cover;
     
     color: var(--pure-white);
@@ -238,7 +238,7 @@ body {
 /* Section Background Matrix Integrations */
 .features-container-bg {
     background: linear-gradient(to right, rgba(240, 247, 255, 0.96), rgba(230, 242, 255, 0.92)), 
-                url('/static/images/tech-arrows.jpeg') no-repeat center center/cover;
+                url('/static/images/tech-arrows.jpg') no-repeat center center/cover;
 }
 
 /* Premium Component Cards Layout */
@@ -301,7 +301,7 @@ body {
 .counter-section {
     position: relative;
     background: linear-gradient(135deg, rgba(10, 25, 47, 0.5) 0%, rgba(10, 25, 47, 0.7) 100%), 
-                url('/static/images/network-mesh.jpeg') no-repeat center center;
+                url('/static/images/network-mesh.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed; /* Parallax effect */
     color: var(--pure-white);
@@ -517,31 +517,31 @@ body {
    ========================================================================== */
 .about-bg-overlay {
     background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/two.jpg') no-repeat center center fixed !important;
+                url('/static/images/network-mesh.jpg') no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
 .services-bg-overlay {
     background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/three.jpg') no-repeat center center fixed !important;
+                url('/static/images/three.jfif') no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
 .products-bg-overlay {
     background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/four.jpg') no-repeat center center fixed !important;
+                url('/static/images/four.jfif') no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
 .training-bg-overlay {
     background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/five.jpg') no-repeat center center fixed !important;
+                url('/static/images/five.jfif') no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
 .contact-bg-overlay {
     background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/six.jpg') no-repeat center center fixed !important;
+                url('/static/images/six.jfif') no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
