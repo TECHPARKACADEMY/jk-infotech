@@ -3,14 +3,14 @@
 {% block content %}
 
 <!-- Hero Banner -->
-<section class="hero">
+<section class="hero" data-aos="zoom-out">
     <h1>WELCOME TO JK INFOTECH</h1>
     <p>Premium multi-brand computer showroom, advanced system builders, high-tier CCTV setup, and enterprise-grade network architectures.</p>
     <a href="{{ url_for('products') }}" class="btn btn-primary">Explore Showroom</a>
 </section>
 
 <!-- Company Introduction -->
-<section class="section-padding">
+<section class="section-padding" data-aos="fade-up">
     <h2 class="section-title">Corporate Solution Hub</h2>
     <div style="text-align: center; max-width: 800px; margin: 0 auto;">
         <p style="font-size: 17px; line-height: 1.8; color: #555;">Welcome to jk infotech, where we house premium hardware component distribution channels alongside certified servicing labs. We engineer scalable IT architecture, mission-critical CCTV matrices, and high-performance routing layouts for modern workspaces.</p>
@@ -18,20 +18,20 @@
 </section>
 
 <!-- Core Features Overview -->
-<section class="section-padding" style="background:#f0f4f8;">
-    <h2 class="section-title">What We Do</h2>
+<section class="section-padding features-container-bg">
+    <h2 class="section-title" data-aos="fade-down">What We Do</h2>
     <div class="grid-3">
-        <div class="premium-card">
+        <div class="premium-card" data-aos="fade-up" data-aos-delay="100">
             <i class="fa-solid fa-laptop-medical"></i>
             <h3>Hardware Sales</h3>
             <p>Direct certified distribution of Enterprise Servers, Business Notebooks, custom CAD Rig builds, and architectural setups.</p>
         </div>
-        <div class="premium-card">
+        <div class="premium-card" data-aos="fade-up" data-aos-delay="200">
             <i class="fa-solid fa-shield-halved"></i>
             <h3>CCTV Surveillance</h3>
             <p>AI-integrated IP cameras, high-density network video recording storage installations, and structural peripheral controls.</p>
         </div>
-        <div class="premium-card">
+        <div class="premium-card" data-aos="fade-up" data-aos-delay="300">
             <i class="fa-solid fa-network-wired"></i>
             <h3>Enterprise Networking</h3>
             <p>Managed switches, structured fiber layout distribution, load-balancing router deployments, and clean server racks.</p>
@@ -41,24 +41,24 @@
 
 <!-- Why Choose Us -->
 <section class="section-padding">
-    <h2 class="section-title">Why Choose TechCore</h2>
+    <h2 class="section-title" data-aos="fade-up">Why Choose TechCore</h2>
     <div class="grid-4">
-        <div class="premium-card">
+        <div class="premium-card" data-aos="zoom-in" data-aos-delay="100">
             <i class="fa-solid fa-award"></i>
             <h3>Authorized Partner</h3>
             <p>Direct alignment with top global tech brands guaranteeing genuine parts.</p>
         </div>
-        <div class="premium-card">
+        <div class="premium-card" data-aos="zoom-in" data-aos-delay="200">
             <i class="fa-solid fa-user-shield"></i>
             <h3>Certified Engineers</h3>
             <p>Field specialists for network routing topologies and system architecture.</p>
         </div>
-        <div class="premium-card">
+        <div class="premium-card" data-aos="zoom-in" data-aos-delay="300">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <h3>Prompt SLA Support</h3>
             <p>Minimal response down-times with active support architectures.</p>
         </div>
-        <div class="premium-card">
+        <div class="premium-card" data-aos="zoom-in" data-aos-delay="400">
             <i class="fa-solid fa-screwdriver-wrench"></i>
             <h3>Advanced Lab</h3>
             <p>Fully static-insulated diagnostic lab for structural chip repair sets.</p>
@@ -67,7 +67,7 @@
 </section>
 
 <!-- Animated Counters -->
-<section class="counter-section">
+<section class="counter-section" data-aos="fade-up">
     <div class="counter-grid">
         <div class="counter-item">
             <h2 class="counter" data-target="1500">0</h2>
@@ -89,7 +89,7 @@
 </section>
 
 <!-- Brands Section -->
-<section class="brands-section">
+<section class="brands-section" data-aos="fade-up">
     <h2 class="section-title" style="font-size:24px; margin-bottom:30px;">Authorized Showroom Partners</h2>
     <div class="brand-logos">
         <img src="{{ url_for('static', filename='images/intel.jfif') }}" alt="Intel">

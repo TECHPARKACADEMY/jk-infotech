@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>{% block title %}JK INFO TECH - Corporate Hardware Showroom & Services{% endblock %}</title>
+    <title>{% block title %}JK INFO TECH - Corporate Hardware Showroom & Services{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
+    <!-- AOS Scroll Animation Framework Core CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -31,7 +33,8 @@
         </div>
     </nav>
 
-    <main class="main-content">
+    <!-- Dynamic Context Layout Hooks Wrapper with Embedded Class Settings -->
+    <main class="main-content {% block page_bg_class %}{% endblock %}">
         {% block content %}{% endblock %}
     </main>
 
@@ -61,31 +64,41 @@
                 </ul>
             </div>
             <div class="footer-contact">
-    <h4>Showroom Desk</h4>
-    
-    <div class="contact-item-row">
-        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-        <div class="contact-text">61/4, Alagappapuram, College Railway Road, Karaikudi - 630003.</div>
-    </div>
-
-    <!-- Phone Component -->
-    <div class="contact-item-row">
-        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-        <div class="contact-text">
-            +91 80568 28383<br>
-            +91 80158 28383<br>
-            04565-230383
+                <h4>Showroom Desk</h4>
+                <div class="contact-item-row">
+                    <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="contact-text">61/4, Alagappapuram, College Railway Road, Karaikudi - 630003.</div>
+                </div>
+                <div class="contact-item-row">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-text">
+                        +91 80568 28383<br>
+                        +91 80158 28383<br>
+                        04565-230383
+                    </div>
+                </div>
+                <div class="contact-item-row">
+                    <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                    <div class="contact-text">www.jkinfotechindia.com</div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!-- Web Component -->
-    <div class="contact-item-row">
-        <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
-        <div class="contact-text">www.jkinfotechindia.com</div>
-    </div>
-</div>
+        <div class="footer-bottom">
+            &copy; 2026 JK INFO TECH. All Rights Reserved. | <span style="color:var(--primary-blue)">"Our Aim is Your Satisfaction"</span>
+        </div>
     </footer>
 
+    <!-- Script Execution Components -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <!-- AOS Scroll Animation Module Initialization -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, /* 1 Second linear duration speed rate */
+            once: true,     /* Triggers the fade action layout sequence only once when scrolling down */
+            offset: 120     /* Frame trigger padding context */
+        });
+    </script>
 </body>
 </html>

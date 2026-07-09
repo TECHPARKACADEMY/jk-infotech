@@ -512,3 +512,42 @@ body {
     line-height: 1.6;
     flex: 1; /* மீதமுள்ள முழு இடத்தையும் வலதுபுற கன்டென்ட் எடுத்துக்கொள்ளும் */
 }
+/* ==========================================================================
+   DYNAMIC MULTI-PAGE BG INJECTIONS W/ COVERS (SAFE INTEGRATION)
+   ========================================================================== */
+.about-bg-overlay {
+    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
+                url('/static/images/two.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+.services-bg-overlay {
+    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
+                url('/static/images/three.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+.products-bg-overlay {
+    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
+                url('/static/images/four.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+.training-bg-overlay {
+    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
+                url('/static/images/five.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+.contact-bg-overlay {
+    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
+                url('/static/images/six.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+/* Clear static blocks inside dynamically loaded overlays */
+.about-bg-overlay .premium-card, 
+.services-bg-overlay .premium-card, 
+.training-bg-overlay .premium-card {
+    background: rgba(255, 255, 255, 0.94) !important;
+}
