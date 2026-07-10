@@ -3,12 +3,22 @@
 {% block content %}
 
 <!-- Hero Banner -->
-<section class="hero" data-aos="zoom-out">
-    <h1>WELCOME TO JK INFOTECH</h1>
-    <p>Premium multi-brand computer showroom, advanced system builders, high-tier CCTV setup, and enterprise-grade network architectures.</p>
-    <a href="{{ url_for('products') }}" class="btn btn-primary">Explore Showroom</a>
+<!-- Hero Banner with Cinematic Slow-Mo Background Layers -->
+<section class="hero" data-aos="zoom-out"><br><br><br>
+    <div class="hero-bg-slides">
+        <div class="hero-slide active" style="background-image: url('/static/images/bgg1.png');"></div>
+        <div class="hero-slide" style="background-image: url('/static/images/bgr2.png');"></div>
+        <div class="hero-slide" style="background-image: url('/static/images/four.jfif');"></div>
+        <div class="hero-slide" style="background-image: url('/static/images/bgr3.png');"></div>
+    </div>
+    
+    <!-- Original Text Content Inside Overlay Framework -->
+    <div class="hero-content-wrapper"><br><br><br>
+        <h1>WELCOME TO JK INFOTECH</h1>
+        <p>Premium multi-brand computer showroom, advanced system builders, high-tier CCTV setup, and enterprise-grade network architectures.</p>
+        <a href="{{ url_for('products') }}" class="btn btn-primary">Explore Showroom</a>
+    </div>
 </section>
-
 <!-- Company Introduction -->
 <section class="section-padding" data-aos="fade-up">
     <h2 class="section-title">Corporate Solution Hub</h2>

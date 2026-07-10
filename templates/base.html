@@ -14,25 +14,26 @@
 <body>
 
     <!-- Glass Navbar with Official Logo Image -->
-    <nav class="navbar">
+<nav class="navbar">
         <div class="nav-container">
             <a href="{{ url_for('index') }}" class="logo-wrapper">
                 <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="JK INFO TECH LOGO" class="brand-logo-img">
             </a>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                <li><a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}">About Us</a></li>
-                <li><a href="{{ url_for('services') }}" class="{% if request.path == '/services' %}active{% endif %}">Services</a></li>
-                <li><a href="{{ url_for('products') }}" class="{% if request.path == '/products' %}active{% endif %}">Products</a></li>
-                <li><a href="{{ url_for('training') }}" class="{% if request.path == '/training' %}active{% endif %}">Training & Projects</a></li>
-                <li><a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}">Contact Us</a></li>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinksMenu">
+                <li><a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}\">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}\">About</a></li>
+                <li><a href="{{ url_for('services') }}" class="{% if request.path == '/services' %}active{% endif %}\">Services</a></li>
+                <li><a href="{{ url_for('products') }}" class="{% if request.path == '/products' %}active{% endif %}\">Products</a></li>
+                <li><a href="{{ url_for('training') }}" class="{% if request.path == '/training' %}active{% endif %}\">Training</a></li>
+                <li><a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}\">Contact</a></li>
             </ul>
-            <div class="nav-cta">
-                <a href="{{ url_for('contact') }}" class="btn btn-primary">Connect Now</a>
-            </div>
         </div>
     </nav>
-
     <!-- Dynamic Context Layout Hooks Wrapper with Embedded Class Settings -->
     <main class="main-content {% block page_bg_class %}{% endblock %}">
         {% block content %}{% endblock %}

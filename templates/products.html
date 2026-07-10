@@ -6,63 +6,136 @@
 <section class="section-padding">
     <h2 class="section-title" data-aos="fade-up">Hardware Showroom Portfolio</h2>
     <div class="grid-4">
+        
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="100">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/desktop-systems.jfif') }}" alt="Desktop Systems">
             </div>
             <h3>Business Desktops</h3>
             <p>Intel i5/i7 Corporate Editions</p>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="Business Desktops"
+                    data-img="{{ url_for('static', filename='images/desktop-systems.jfif') }}"
+                    data-desc="High-performance business desktops engineered for corporate workspaces. Features Intel Core i5/i7 processors, DDR4/DDR5 high-speed RAM setups, and ultra-fast NVMe SSD storage architecture for seamless multitasking. Comes with pre-activated corporate operating setups and 3 years showroom warranty support.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="200">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/laptap.jfif') }}" alt="Laptops">
             </div>
             <h3>Enterprise Laptops</h3>
             <p>Slim high-performance units</p>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="Enterprise Laptops"
+                    data-img="{{ url_for('static', filename='images/laptap.jfif') }}"
+                    data-desc="Premium enterprise-series ultrabooks designed for portability and professional excellence. Equipped with high-density anti-glare display matrices, extended battery lifecycles, advanced biometrics security protocols, and heavy multitasking computation chips. Ready for field-operations.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="300">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/printer.jfif') }}" alt="Printers">
             </div>
             <h3>Laser Printers</h3>
             <p>Enterprise Network Printing Units</p>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="Laser Printers"
+                    data-img="{{ url_for('static', filename='images/printer.jfif') }}"
+                    data-desc="Heavy-duty corporate document hubs featuring ultra-fast laser processing printing arrays. Supports automated duplex printing structures, built-in secure Wi-Fi and Gigabit network interfaces, low maintenance toner cartridges, and high volume paper tray capacity.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="400">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/cctv.jfif') }}" alt="CCTV">
             </div>
             <h3>IP CCTV Cameras</h3>
-            <p>4K AI Detection Enabled</p>
+            <p>4K AI Detection Enabled</p><br>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="IP CCTV Cameras"
+                    data-img="{{ url_for('static', filename='images/cctv.jfif') }}"
+                    data-desc="Next-generation 4K surveillance modules integrated with deep-learning AI algorithms for active human/vehicle matrix shape classification. Features full-color night vision visibility maps, IP67 weatherized hardware housing defenses, and secure centralized multi-channel NVR configurations.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="100">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/routers.jfif') }}" alt="Router">
             </div>
             <h3>Enterprise Routers</h3>
-            <p>Dual-WAN High Bandwidth</p>
+            <p>Dual-WAN High Bandwidth</p><br>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="Enterprise Routers"
+                    data-img="{{ url_for('static', filename='images/routers.jfif') }}"
+                    data-desc="High-availability dual-WAN multi-gigabit routing gateways built for resilient enterprise infrastructure. Features advanced hardware firewall packet inspections, dynamic load balancing algorithms, secure site-to-site VPN tunnels, and intelligent QoS traffic shaping controls.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="200">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/switch.jfif') }}" alt="Switch">
             </div>
             <h3>Managed Switches</h3>
             <p>24-Port PoE Gigabit Layouts</p>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="Managed Switches"
+                    data-img="{{ url_for('static', filename='images/switch.jfif') }}"
+                    data-desc="Layer 2/Layer 3 managed smart network switches featuring 24 full Gigabit PoE ports. Delivers intelligent power allocations for heavy IP cameras or wireless access points, VLAN network segmentation architectures, and a central cloud-managed diagnostic command dashboard.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="300">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/ups.jfif') }}" alt="UPS">
             </div>
             <h3>Online UPS Systems</h3>
             <p>Pure Sine Wave Central Power</p>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="Online UPS Systems"
+                    data-img="{{ url_for('static', filename='images/ups.jfif') }}"
+                    data-desc="True double-conversion online uninterruptible power supplies (UPS) engineered for sensitive server architectures and hardware racks. Outputs pure sine wave power metrics, handles lightning voltage surge suppressions, and features hot-swappable heavy battery backup grids.">
+                View Details
+            </button>
         </div>
+
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="400">
             <div class="product-img-box">
                 <img src="{{ url_for('static', filename='images/ssd.jfif') }}" alt="SSD">
             </div>
             <h3>NVMe PCIe SSDs</h3>
             <p>High speed enterprise storage</p>
+            <button class="btn btn-primary view-details-btn" style="margin-top:15px; width:100%;"
+                    data-title="NVMe PCIe SSDs"
+                    data-img="{{ url_for('static', filename='images/ssd.jfif') }}"
+                    data-desc="Ultra-fast PCIe Gen4 NVMe solid-state drives engineered for heavy read/write operational computing workflows. Delivers lightning-fast 7000MB/s data processing pipelines, integrated premium hardware heat sink thermal protectors, and prolonged operational lifecycles for server storage.">
+                View Details
+            </button>
         </div>
+
     </div>
 </section>
+
+<div id="productModal" class="custom-modal">
+    <div class="modal-content-wrapper">
+        <span class="close-modal-trigger">&times;</span>
+        <div class="modal-body-layout">
+            <div class="modal-img-area">
+                <img id="modalProductImg" src="" alt="Selected Product Details">
+            </div>
+            <div class="modal-text-area">
+                <h2 id="modalProductTitle">Product Title</h2>
+                <hr style="border: 1px solid rgba(0, 102, 204, 0.15); margin: 15px 0;">
+                <p id="modalProductDesc">Product comprehensive layout description details go here dynamically via scripts...</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
