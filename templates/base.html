@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}JK INFO TECH - Corporate Hardware Showroom & Services{% endblock %}</title>
+    <title>{% block title %}JK InfoTech - Corporate Hardware Showroom & Services{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
-    <!-- AOS Scroll Animation Framework Core CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Glass Navbar with Official Logo Image -->
-<nav class="navbar">
+    <div class="top-utility-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-phone"></i> +91 80568 28383</span>
+                <span><i class="fa-solid fa-envelope"></i> enquiry@jkinfotechindia.com</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
         <div class="nav-container">
             <a href="{{ url_for('index') }}" class="logo-wrapper">
-                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="JK INFO TECH LOGO" class="brand-logo-img">
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="JK InfoTech LOGO" class="brand-logo-img">
             </a>
             
             <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
@@ -25,26 +36,25 @@
             </button>
 
             <ul class="nav-links" id="navLinksMenu">
-                <li><a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}\">Home</a></li>
-                <li><a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}\">About</a></li>
-                <li><a href="{{ url_for('services') }}" class="{% if request.path == '/services' %}active{% endif %}\">Services</a></li>
-                <li><a href="{{ url_for('products') }}" class="{% if request.path == '/products' %}active{% endif %}\">Products</a></li>
-                <li><a href="{{ url_for('training') }}" class="{% if request.path == '/training' %}active{% endif %}\">Training</a></li>
-                <li><a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}\">Contact</a></li>
+                <li><a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+                <li><a href="{{ url_for('services') }}" class="{% if request.path == '/services' %}active{% endif %}">Services</a></li>
+                <li><a href="{{ url_for('products') }}" class="{% if request.path == '/products' %}active{% endif %}">Products</a></li>
+                <li><a href="{{ url_for('training') }}" class="{% if request.path == '/training' %}active{% endif %}">Training</a></li>
+                <li><a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
             </ul>
         </div>
     </nav>
-    <!-- Dynamic Context Layout Hooks Wrapper with Embedded Class Settings -->
+
     <main class="main-content {% block page_bg_class %}{% endblock %}">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Professional Business Layout Footer -->
     <footer class="modern-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <h3>JK INFO TECH</h3>
-                <p>Complete Corporate Solution For All Your IT Requirements. Premium multi-brand showroom sales, high-definition CCTV installations, and enterprise scale network setups.</p>
+                <h3>JK InfoTech</h3>
+                <p>Complete Corporate Solution For All Your IT Requirements. Premium Multi-Brand Showroom Sales, High-Definition CCTV Installations, and Enterprise Scale Network Setups.</p>
             </div>
             <div class="footer-links">
                 <h4>Navigation</h4>
@@ -85,21 +95,14 @@
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 JK INFO TECH. All Rights Reserved. | <span style="color:var(--primary-blue)">"Our Aim is Your Satisfaction"</span>
+            &copy; 2026 JK InfoTech. All Rights Reserved. | <span style="color:var(--primary-blue)">"Our Aim Is Your Satisfaction"</span>
         </div>
     </footer>
 
-    <!-- Script Execution Components -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    
-    <!-- AOS Scroll Animation Module Initialization -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000, /* 1 Second linear duration speed rate */
-            once: true,     /* Triggers the fade action layout sequence only once when scrolling down */
-            offset: 120     /* Frame trigger padding context */
-        });
+        AOS.init({ duration: 1000, once: true, offset: 120 });
     </script>
 </body>
 </html>

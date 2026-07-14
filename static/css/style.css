@@ -1,22 +1,15 @@
-/* ==========================================================================
-   JK INFO TECH - PROFESSIONAL HARDWARE SHOWROOM & SERVICE CENTER
-   Theme: Premium Deep Navy, Royal Blue, Light Sky Blue Accent System
-   ========================================================================== */
-
 :root {
     --primary-blue: #0066cc;
     --navy-dark: #0a192f;
     --navy-light: #172a45;
     --pure-white: #ffffff;
-    --light-sky-blue: #f0f7ff;      /* Primary global background tint */
-    --card-sky-tint: #e6f2ff;       /* Card structural subtle sky tint */
+    --light-sky-blue: #f0f7ff;
+    --card-sky-tint: #e6f2ff;
     --text-dark: #1e293b;
     --text-muted: #64748b;
-    --glass-bg: rgba(10, 25, 47, 0.88);
     --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Global Framework Setup */
 * {
     margin: 0;
     padding: 0;
@@ -29,10 +22,7 @@ body {
     background-color: var(--light-sky-blue);
     color: var(--text-dark);
     line-height: 1.6;
-}
-
-.main-content {
-    margin-top: 85px;
+    padding-top: 125px !important;
 }
 
 .section-padding {
@@ -52,6 +42,7 @@ body {
     letter-spacing: 1.5px;
 }
 
+
 .section-title::after {
     content: '';
     width: 80px;
@@ -63,691 +54,407 @@ body {
 }
 
 /* Structural Layout Interfaces */
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: 40px;
-}
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
 
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-.grid-4 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-/* Glassmorphic Navbar with Interactive Frame */
-.navbar {
+/* 1. TOP MINI UTILITY STRIP BAR */
+.top-utility-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 2px solid var(--primary-blue);
-    z-index: 1000;
-    padding: 10px 0;
+    height: 38px;
+    background: #011d33 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 13px;
+    z-index: 10000 !important;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.nav-container {
-    max-width: 1200px;
+.top-bar-container {
+    width: 100%;
+    max-width: 1250px;
     margin: 0 auto;
+    padding: 0 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.top-bar-left { display: flex; gap: 25px; }
+.top-bar-left span { display: inline-flex; align-items: center; gap: 8px; }
+.top-bar-left i { color: #f1c40f; }
+.top-bar-right { display: flex; gap: 18px; }
+.top-bar-right a { color: rgba(255, 255, 255, 0.9) !important; text-decoration: none; }
+.top-bar-right a:hover { color: #f1c40f !important; }
+
+/* 2. CORPORATE NAVBAR INTERFACE */
+.navbar {
+    position: fixed;
+    top: 38px !important;
+    left: 0;
+    width: 100%;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 10px 0;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.nav-container {
+    max-width: 1250px;
+    margin: 0 auto;
     padding: 0 25px;
-}
-
-.logo-wrapper {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    text-decoration: none;
 }
 
+.logo-wrapper { display: flex; align-items: center; }
 .brand-logo-img {
-    height: 55px;
+    height: 68px; /* Increased width size scale */
     width: auto;
     object-fit: contain;
-    transition: var(--transition-smooth);
-    background: var(--pure-white);
-    padding: 5px 12px;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-}
-
-.nav-links a {
-    color: var(--pure-white);
-    text-decoration: none;
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links li a {
+    color: #0f172a;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    transition: var(--transition-smooth);
+    text-decoration: none;
+    letter-spacing: 0.3px;
     padding: 8px 0;
     position: relative;
+    transition: color 0.25s ease;
 }
 
-.nav-links a:hover, 
-.nav-links a.active {
-    color: var(--primary-blue);
+.nav-links li a:hover, .nav-links li a.active { color: #f1c40f !important; }
+.nav-links li a::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #f1c40f; transition: width 0.25s ease;
 }
+.nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary-blue);
-    transition: var(--transition-smooth);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-/* Button UI Components */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 4px;
-    font-weight: 600;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 13px;
-    transition: var(--transition-smooth);
-    cursor: pointer;
-    border: none;
-}
-
-.btn-primary {
-    background: var(--primary-blue);
-    color: var(--pure-white);
-}
-
-.btn-primary:hover {
-    background: #0052a3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
-}
-
-/* Dynamic Hero Section with Image Layering */
-
-.hero {
-    position: relative;
-    width: 100%;
-    min-height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--pure-white);
-    padding: 120px 20px;
-    text-align: center;
-    z-index: 1;
-    overflow: hidden; /* Out of bounds layers-ஐ மறைக்க */
-}
-
-/* Background Slider Core Wrapper */
-.hero-bg-slides {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-}
-
-/* Individual Slides Setup for Slow Motion Fade */
-.hero-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    /* 👇 SIDE-LA BLANK SPACE VARAMAL FULL SCREEN MAP AAGA EFFECT */
-    background-size: 100% 100%; 
-    background-position: center center;
-    background-repeat: no-repeat;
-    
-    opacity: 0;
-    /* 2.5 Seconds Ultra Smooth Slow-Mo Fade Animation */
-    transition: opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1); 
-}
-
-/* Active Class to Trigger the Slow-Mo Reveal */
-.hero-slide.active {
-    opacity: 1;
-}
-
-/* Global High Contrast Overlay Filter (Text Visibility Shield) */
-/* Global High Contrast Overlay Filter (Text Visibility Shield) */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    /* 👇 ANTHA LIGHT WHITE HAZE LAYER-AI POOCKI VITTU PURE PREMIUM DARK GRADIENT APPLIING */
-    background: linear-gradient(to bottom, rgba(10, 25, 47, 0.2) 0%, rgba(10, 25, 47, 0.5) 100%);
-    
-    z-index: -1; /* Sits perfectly above slides but below text */
-}
-
-.hero-content-wrapper {
-    position: relative;
-    z-index: 2;
-}
-
-.hero h1 {
-    font-size: 54px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95);
-}
-
-.hero p {
-    font-size: 20px;
-    color: #f8fafc;
-    max-width: 850px;
-    margin: 0 auto 35px;
-    font-weight: 500;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
-}
-/* Section Background Matrix Integrations */
-.features-container-bg {
-    background: linear-gradient(to right, rgba(240, 247, 255, 0.96), rgba(230, 242, 255, 0.92)), 
-                url('/static/images/tech-arrows.jpg') no-repeat center center/cover;
-}
-
-/* Premium Component Cards Layout */
-.premium-card {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(0, 102, 204, 0.08);
-    border-radius: 8px;
-    padding: 35px 25px;
-    box-shadow: 0 10px 25px rgba(10, 25, 47, 0.04);
-    transition: var(--transition-smooth);
-    border-top: 4px solid transparent;
-    text-align: center;
-}
-
-.premium-card:hover {
-    transform: translateY(-8px);
-    border-top: 4px solid var(--primary-blue);
-    background: var(--card-sky-tint);
-    box-shadow: 0 15px 35px rgba(0, 102, 204, 0.12);
-}
-
-.premium-card i {
-    font-size: 42px;
-    color: var(--primary-blue);
-    margin-bottom: 20px;
-}
-
-.premium-card h3 {
-    color: var(--navy-dark);
-    margin-bottom: 12px;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-/* Image Presentation Showcase Wrappers */
-.product-img-box {
-    
-    border-radius: 6px;
-    height: 210px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 102, 204, 0.1);
-}
-
-.product-img-box img {
-    max-width: 85%;
-    max-height: 85%;
-    object-fit: contain;
-    transition: var(--transition-smooth);
-}
-
-.premium-card:hover .product-img-box img {
-    transform: scale(1.06);
-}
-
-/* Animated Counters Section System (Network Background Layer) */
-.counter-section {
-    position: relative;
-    background: linear-gradient(135deg, rgba(10, 25, 47, 0.5) 0%, rgba(10, 25, 47, 0.7) 100%), 
-                url('/static/images/network-mesh.jpg') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed; /* Parallax effect */
-    color: var(--pure-white);
-    padding: 75px 20px;
-    text-align: center;
-}
-
-.counter-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-}
-
-.counter-item h2 {
-    font-size: 44px;
-    color: var(--primary-blue);
-    font-weight: 700;
-}
-
-/* Professional Contact Form & Interface Elements */
-.contact-wrapper {
-    background: var(--pure-white);
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 0 15px 40px rgba(10, 25, 47, 0.06);
-    border: 1px solid rgba(0, 102, 204, 0.1);
-}
-
-.info-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.info-row i {
-    font-size: 20px;
-    color: var(--primary-blue);
-    background: var(--card-sky-tint);
-    padding: 12px;
-    border-radius: 6px;
-}
-
-.info-text h4 {
-    font-size: 16px;
-    color: var(--navy-dark);
-    margin-bottom: 4px;
-}
-
-.info-text p {
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--navy-dark);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid rgba(0, 102, 204, 0.15);
-    background: var(--light-sky-blue);
-    border-radius: 4px;
-    font-size: 14px;
-    color: var(--text-dark);
-    transition: var(--transition-smooth);
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    background: var(--pure-white);
-    box-shadow: 0 0 8px rgba(0, 102, 204, 0.15);
-}
-
-/* Showroom Authorized Brand Display Grid */
-.brands-section {
-    background: var(--pure-white);
-    padding: 50px 20px;
-    text-align: center;
-    border-top: 1px solid rgba(0, 102, 204, 0.1);
-}
-
-.brand-logos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    flex-wrap: wrap;
-}
-
-.brand-logos img {
-    max-width: 120px;
-    max-height: 45px;
-    object-fit: contain;
-    transition: var(--transition-smooth);
-}
-
-/* Corporate Hardware Room Footer Setup */
-.modern-footer {
-    background: var(--navy-dark);
-    color: var(--pure-white);
-    padding: 70px 20px 25px;
-    border-top: 3px solid var(--primary-blue);
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-brand h3 {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    margin-bottom: 15px;
-}
-
-.footer-brand p {
-    color: #94a3b8;
-    font-size: 14px;
-}
-
-.footer-container h4 {
-    color: var(--pure-white);
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.footer-container ul {
-    list-style: none;
-}
-
-.footer-container ul li {
-    margin-bottom: 10px;
-}
-
-.footer-container ul li a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 14px;
-    transition: var(--transition-smooth);
-}
-
-.footer-container ul li a:hover {
-    color: var(--primary-blue);
-    padding-left: 6px;
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 25px;
-    color: #64748b;
-    font-size: 13px;
-}
-
-/* Responsive Structural Controls */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .grid-2, .footer-container { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 32px; }
-}
-/* ==========================================================================
-   FOOTER CONTACT ALIGNMENT FIX (ICON LEFT | CONTENT RIGHT)
-   ========================================================================== */
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* வரிகளுக்கு இடையே சமமான இடைவெளி */
-}
-
-.contact-item-row {
-    display: flex;
-    align-items: flex-start; /* டெக்ஸ்ட் எத்தனை வரி வந்தாலும் ஐகான் டாப்-லேயே நிக்கும் */
-    gap: 12px; /* ஐகானுக்கும் டெக்ஸ்டுக்கும் இடையே உள்ள துல்லியமான கேப் */
-}
-
-.contact-icon {
-    width: 20px; /* அனைத்து ஐகான்களும் ஒரே நேர்க்கோட்டில் வர பிக்சட் வித் */
-    color: var(--primary-blue);
-    font-size: 16px;
-    margin-top: 4px; /* டெக்ஸ்ட்டின் முதல் வரியோடு ஐகானை நேராக்க */
-    text-align: center;
-}
-
-.contact-text {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.6;
-    flex: 1; /* மீதமுள்ள முழு இடத்தையும் வலதுபுற கன்டென்ட் எடுத்துக்கொள்ளும் */
-}
-/* ==========================================================================
-   DYNAMIC MULTI-PAGE BG INJECTIONS W/ COVERS (SAFE INTEGRATION)
-   ========================================================================== */
-.about-bg-overlay {
-    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/network-mesh.jpg') no-repeat center center fixed !important;
-    background-size: cover !important;
-}
-
-.services-bg-overlay {
-    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/three.jfif') no-repeat center center fixed !important;
-    background-size: cover !important;
-}
-
-.products-bg-overlay {
-    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/four.jfif') no-repeat center center fixed !important;
-    background-size: cover !important;
-}
-
-.training-bg-overlay {
-    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/five.jfif') no-repeat center center fixed !important;
-    background-size: cover !important;
-}
-
-.contact-bg-overlay {
-    background: linear-gradient(180deg, rgba(240, 247, 255, 0.86) 0%, rgba(230, 242, 255, 0.93) 100%), 
-                url('/static/images/six.jfif') no-repeat center center fixed !important;
-    background-size: cover !important;
-}
-
-/* Clear static blocks inside dynamically loaded overlays */
-.about-bg-overlay .premium-card, 
-.services-bg-overlay .premium-card, 
-.training-bg-overlay .premium-card {
-    background: rgba(255, 255, 255, 0.94) !important;
-}
-
-/* ==========================================================================
-   HERO TEXT SLOW FADE OUT FOR 3RD IMAGE
-   ========================================================================== */
-.hero-content-wrapper {
-    /* Text மறைவதற்கும் தோன்றுவதற்கும் 1.5 செகண்ட் ஸ்மூத் அனிமேஷன் */
-    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* 3rd Image வரும்போது இந்த கிளாஸ் மூலமா டெக்ஸ்ட் மறையும் */
-.hero-content-wrapper.text-hidden {
-    opacity: 0;
-    transform: scale(0.95); /* லைட்டா சுருங்கி மறையும் பிரீமியம் எஃபெக்ட் */
-    pointer-events: none;    /* டெக்ஸ்ட் மறைந்திருக்கும்போது பட்டன் கிளிக் ஆகாமல் தடுக்க */
-}
-/* ==========================================================================
-   PREMIUM COMPACT MINI SCREEN VIEW (FOR PRODUCT DETAILS)
-   ========================================================================== */
-.custom-modal {
-    display: none; /* Invisible by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 25, 47, 0.4); /* Extra light premium translucent tint */
-    backdrop-filter: blur(5px);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-/* Compact Premium Mini Screen Wrapper */
-.modal-content-wrapper {
-    background: var(--pure-white);
-    max-width: 480px; /* Mini screen compact width limit */
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(10, 25, 47, 0.25);
-    position: relative;
-    padding: 25px;
-    border: 1px solid rgba(0, 102, 204, 0.1);
-    animation: miniScreenPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy smooth entry */
-}
-
-@keyframes miniScreenPop {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.close-modal-trigger {
-    position: absolute;
-    top: 12px;
-    right: 18px;
-    font-size: 28px;
-    color: #64748b;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    z-index: 10;
-}
-
-.close-modal-trigger:hover {
-    color: #ef4444;
-    transform: rotate(90deg);
-}
-
-/* Stacked Layout Perfect for Mini Screens */
-.modal-body-layout {
-    display: flex;
-    flex-direction: column; /* Images on top, texts below for clean grid */
-    gap: 15px;
-    text-align: center;
-}
-
-.modal-img-area {
-    width: 100%;
-    background: #f8fafc;
-    padding: 12px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 180px; /* Fixed height for mini dashboard symmetry */
-}
-
-.modal-img-area img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.modal-text-area {
-    padding-top: 5px;
-}
-
-.modal-text-area h2 {
-    color: var(--navy-dark);
-    font-size: 20px; /* Compact structural title size */
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.modal-text-area p {
-    color: #475569;
-    font-size: 13.5px; /* Clean mini description text readability */
-    line-height: 1.6;
-    margin: 0;
-}
-/* ==========================================================================
-   MOBILE RESPONSIVE NAVIGATION DRAWER SYSTEM
-   ========================================================================== */
-
-/* Toggle Button Styling (Desktop-la hide ஆகிடும், Mobile-la மட்டும் தெரியும்) */
 .mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
-    color: var(--pure-white);
     font-size: 24px;
+    color: #0f172a;
     cursor: pointer;
-    transition: var(--transition-smooth);
-    z-index: 10001;
 }
 
-@media (max-width: 768px) {
-    /* Mobile-la toggle button-ஐ காட்டுறோம் */
-    .mobile-menu-toggle {
-        display: block;
-    }
+/* 3. HERO SLIDESHOW (FULL VIEWPORT - NO VISUAL SHADOW MASKS) */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--pure-white);
+    text-align: center;
+}
 
-    /* Navbar Links-ஐ Side Drawer Menu-வா மாத்துறோம் */
+.hero-bg-slides { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.hero-slide {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+.hero-slide.active { opacity: 1; }
+
+.hero::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.25); z-index: 2;
+}
+
+.hero-content-wrapper {
+    position: relative; z-index: 3; max-width: 850px; padding: 20px;
+    text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.85);
+}
+.hero-content-wrapper h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+
+/* 4. CARDS & INTERACTION BUTTONS */
+.premium-card {
+    background: var(--pure-white);
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(0, 102, 204, 0.06);
+}
+.premium-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(0,102,204,0.1); }
+.premium-card i { font-size: 40px; color: var(--primary-blue); margin-bottom: 20px; }
+.premium-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--navy-dark); }
+.premium-card p { font-size: 14px; color: var(--text-muted); }
+
+/* PRODUCT CLICKABLE INTERACTION STYLES */
+.product-clickable-card { cursor: pointer; position: relative; overflow: hidden; }
+.product-img-box { width: 100%; height: 180px; margin-bottom: 15px; border-radius: 6px; overflow: hidden; background: #f8fafc; }
+.product-img-box img { width: 100%; height: 100%; object-fit: contain; transition: var(--transition-smooth); }
+.product-clickable-card:hover .product-img-box img { transform: scale(1.06); }
+
+.whatsapp-badge-action {
+    margin-top: 15px;
+    background-color: #25d366;
+    color: white;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}
+.product-clickable-card:hover .whatsapp-badge-action { background-color: #1ebd58; }
+
+/* ==========================================================================
+   SERVICES PAGE: COMPACT BLUE OVAL WHATSAPP BUTTONS
+   ========================================================================== */
+.dynamic-whatsapp-btn {
+    margin: 20px auto 0 !important; /* Perfect vertical gap below paragraph */
+    background-color: #0b63e0 !important; /* Premium corporate matching blue */
+    color: #ffffff !important;
+    display: inline-flex !important; /* Keeps icon and text in a tight inline layout */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;                        /* Tight gap between icon and text */
+    padding: 6px 16px !important;    /* Sleek compact vertical/horizontal spacing */
+    font-size: 10px !important;      /* Small sharp font metric */
+    font-weight: 700 !important;     /* Bold punchy text style */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px !important;  /* Creates the perfect pill/oval capsule shape */
+    width: fit-content !important;   /* Button shrinks tightly to wrap text content */
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(11, 99, 224, 0.2);
+    transition: all 0.25s ease-in-out;
+}
+
+.dynamic-whatsapp-btn:hover {
+    background-color: #004cb8 !important; /* Deep royal blue shade on cursor hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(11, 99, 224, 0.35);
+}
+
+.dynamic-whatsapp-btn i {
+    font-size: 12px !important;      /* Icon stays slightly prominent */
+    margin: 0 !important;            /* Removes unwanted inherited spacing metrics */
+    color: #ffffff !important;
+}
+
+/* Counter & Footer Sections */
+.counter-section { background: var(--navy-dark); color: white; padding: 60px 20px; text-align: center; }
+.counter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.counter-item h2 { font-size: 42px; color: #f1c40f; }
+
+.modern-footer { background: #071121; color: #94a3b8; padding: 60px 20px 20px; border-top: 3px solid var(--primary-blue); }
+.footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 1250px; margin: 0 auto; }
+.footer-brand h3 { color: white; margin-bottom: 15px; }
+.footer-links h4, .footer-contact h4 { color: white; margin-bottom: 20px; text-transform: uppercase; font-size: 15px; letter-spacing: 1px; }
+.footer-links ul { list-style: none; }
+.footer-links ul li { margin-bottom: 10px; }
+.footer-links ul li a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+.footer-links ul li a:hover { color: white; }
+.contact-item-row { display: flex; gap: 12px; margin-bottom: 15px; }
+.contact-icon { color: var(--primary-blue); }
+.footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
+
+/* Forms Configuration */
+.contact-wrapper { padding: 40px 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; color: var(--navy-dark); text-transform: uppercase; }
+.form-control { width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 14px; }
+.btn { display: inline-block; padding: 12px 28px; font-weight: 700; text-transform: uppercase; font-size: 13px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; text-align: center; }
+.btn-primary { background: var(--primary-blue); color: white; }
+.btn-primary:hover { background: #0052a3; }
+
+/* Responsive Media Controls */
+@media (max-width: 991px) {
+    body { padding-top: 76px !important; }
+    .top-utility-bar { display: none !important; }
+    .navbar { top: 0 !important; padding: 8px 0; }
+    .brand-logo-img { height: 52px; }
+    .mobile-menu-toggle { display: block; }
     .nav-links {
-        display: flex !important; /* Force displays block layout */
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: -100%; /* Default-ah screen-க்கு வெளியே மறைஞ்சு இருக்கும் */
-        width: 280px; /* Side drawer width */
-        height: 100vh;
-        background: rgba(10, 25, 47, 0.98); /* Deep corporate navy transparent tint */
-        backdrop-filter: blur(15px);
-        padding: 100px 30px;
-        gap: 25px;
-        transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth Slide-in */
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
-        z-index: 10000;
+        position: fixed; top: 68px; left: -100%; width: 280px; height: calc(100vh - 68px);
+        background: #ffffff; flex-direction: column; align-items: flex-start; padding: 30px;
+        gap: 20px; box-shadow: 4px 0 15px rgba(0,0,0,0.1); transition: left 0.4s ease;
     }
+    .nav-links.mobile-nav-active { left: 0; }
+}
 
-    /* Button கிளிக் ஆகும்போது மெனுவை சைடுல இருந்து உள்ளே இழுக்க இந்த கிளாஸ் பயன்படும் */
-    .nav-links.mobile-nav-active {
-        right: 0; /* Brings drawer inside display layer */
-    }
+/* ==========================================================================
+   AUTHORIZED SHOWROOM PARTNERS - PERFECT CENTER ALIGNMENT
+   ========================================================================== */
+.brands-section {
+    background-color: var(--light-sky-blue);
+    padding: 60px 20px;
+    text-align: center;
+}
 
-    .nav-links li a {
-        font-size: 18px;
-        display: block;
-        width: 100%;
-        padding: 10px 0;
-    }
+.brand-logos {
+    display: flex;
+    justify-content: center; /* Center aligns all logo items horizontally */
+    align-items: center;     /* Vertically centers them perfectly */
+    flex-wrap: wrap;         /* Allows wrapping beautifully on smaller tablet screens */
+    gap: 40px;               /* Uniform professional spacing between logos */
+    max-width: 1100px;
+    margin: 0 auto;          /* Centers the entire container container block */
+}
+
+.brand-logos img {
+    height: 65px;            /* Uniform height matrix */
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(20%);  /* Subtle corporate touch */
+    transition: var(--transition-smooth);
+}
+
+.brand-logos img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.08);  /* Clean interactive zoom on hover */
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 3;
+    max-width: 850px;
+    padding: 20px;
+    text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.85);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Real-time interactive visibility animation transition framework */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom visibility modifier classes targeted directly via JS script bindings */
+.hero-content-wrapper.content-hidden-state {
+    opacity: 0 !important;
+    transform: translateY(15px); /* Soft push layout logic to elevate premium look when fading out */
+    pointer-events: none;       /* Disables active button click layers when element gets hidden state */
+}
+
+/* ==========================================================================
+   COMPACT OVAL HERO BUTTON UPGRADE
+   ========================================================================== */
+/* --- Modern Capsule View Button --- */
+.view-details-btn {
+    background-color: #0b63e0;
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px; /* Capsule/Oval design matching services layer */
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    margin-top: 15px;
+}
+
+.view-details-btn:hover {
+    background-color: #004cb8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(11, 99, 224, 0.3);
+}
+
+/* --- Mini Window Modal Structural Architecture --- */
+.mini-window-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Blurred translucent dark overlay */
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+.mini-window-content {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 420px; /* Small Mini Window footprint */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+    animation: zoomInFrame 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes zoomInFrame {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-window-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+}
+
+.close-window-btn:hover { color: #333; }
+
+/* Clickable Inner Card Area Link setup */
+.modal-product-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.modal-product-link-wrapper img {
+    max-width: 180px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.modal-product-link-wrapper h2 {
+    font-size: 20px;
+    color: #111;
+    margin-bottom: 10px;
+}
+
+.modal-product-link-wrapper p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Quick Action Callout */
+.modal-action-hint {
+    background-color: #25D366; /* WhatsApp corporate Green color accent */
+    color: white;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
 }
