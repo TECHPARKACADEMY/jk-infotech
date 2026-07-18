@@ -1,10 +1,6 @@
 import os
 import sqlite3
-import smtplib
-import ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
+import requests  # Clean Web HTTP API calls tracking bypass for Render
 from flask import (
     Flask,
     render_template,
@@ -57,18 +53,12 @@ ADMIN_PASSWORD = os.environ.get(
 
 
 # ============================================================
-# TITAN EMAIL SETTINGS
+# BREVO EMAIL API CONFIGURATION
 # ============================================================
 
-SENDER_EMAIL = os.environ.get("TITAN_EMAIL")
-
-SENDER_PASSWORD = os.environ.get("TITAN_PASSWORD")
-
+# SENDER_EMAIL matches verified identity info@jkinfotech.in
+SENDER_EMAIL = os.environ.get("TITAN_EMAIL", "info@jkinfotech.in")
 RECEIVER_EMAIL = "info@jkinfotech.in"
-
-SMTP_SERVER = "smtp.titan.email"
-
-SMTP_PORT = 587
 
 
 # ============================================================
@@ -76,31 +66,19 @@ SMTP_PORT = 587
 # ============================================================
 
 def init_db():
-
     conn = sqlite3.connect(DB_NAME)
-
     cursor = conn.cursor()
-
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS customer_queries (
-
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-
             name TEXT NOT NULL,
-
             email TEXT,
-
             phone TEXT,
-
             message TEXT,
-
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-
         )
     """)
-
     conn.commit()
-
     conn.close()
 
 
@@ -109,118 +87,83 @@ def init_db():
 # ============================================================
 
 def save_query_to_db(name, email, phone, message):
-
     try:
-
         conn = sqlite3.connect(DB_NAME)
-
         cursor = conn.cursor()
-
         cursor.execute("""
-
             INSERT INTO customer_queries
-
-            (name,email,phone,message)
-
-            VALUES (?,?,?,?)
-
+            (name, email, phone, message)
+            VALUES (?, ?, ?, ?)
         """, (name, email, phone, message))
-
         conn.commit()
-
         conn.close()
-
         return True
-
     except Exception as e:
-
         print("DATABASE ERROR")
-
         print(e)
-
         return False
 
 
 # ============================================================
-# CREATE DATABASE
+# INITIALIZE DATABASE
 # ============================================================
-
 init_db()
+
+
 # ============================================================
-# SEND EMAIL FUNCTION
+# SEND EMAIL FUNCTION (VIA BREVO HTTP API)
 # ============================================================
 
 def send_query_email(customer_name, customer_email, customer_phone, customer_msg):
-
     try:
+        # 🔥 TEST SUCCESS! Pulling the key named JK (Brevo API Key) from your Render screen
+        api_key = os.environ.get("JK")
+        if not api_key:
+            print("ERROR: JK ENVIRONMENT VARIABLE (BREVO API KEY) MISSING")
+            return False
 
-        msg = MIMEMultipart()
+        url = "https://api.brevo.com/v3/smtp/email"
+        
+        headers = {
+            "accept": "application/json",
+            "api-key": api_key,
+            "content-type": "application/json"
+        }
 
-        msg["From"] = SENDER_EMAIL
-        msg["To"] = RECEIVER_EMAIL
-        msg["Subject"] = f"New Contact Inquiry - {customer_name}"
-
-        body = f"""
+        body_content = f"""
 ====================================================
-
 NEW CUSTOMER ENQUIRY
-
 ====================================================
-
 Name      : {customer_name}
-
 Email     : {customer_email}
-
 Phone     : {customer_phone}
-
 ----------------------------------------------------
-
-Message
-
+Message:
 ----------------------------------------------------
-
 {customer_msg}
-
 ====================================================
 """
 
-        msg.attach(MIMEText(body, "plain"))
+        payload = {
+            "sender": {"name": "JK Infotech Website", "email": SENDER_EMAIL},
+            "to": [{"email": RECEIVER_EMAIL, "name": "Admin Info"}],
+            "subject": f"New Contact Inquiry - {customer_name}",
+            "textContent": body_content
+        }
 
-        server = smtplib.SMTP(
-            SMTP_SERVER,
-            SMTP_PORT,
-            timeout=20
-        )
-
-        server.ehlo()
-
-        server.starttls()
-
-        server.ehlo()
-
-        server.login(
-            SENDER_EMAIL,
-            SENDER_PASSWORD
-        )
-
-        server.sendmail(
-            SENDER_EMAIL,
-            RECEIVER_EMAIL,
-            msg.as_string()
-        )
-
-        server.quit()
-
-        print("EMAIL SENT SUCCESSFULLY")
-
-        return True
+        # Secure HTTP protocol triggers to bypass Render timeout walls
+        response = requests.post(url, json=payload, headers=headers, timeout=15)
+        
+        if response.status_code in [200, 201, 202]:
+            print("EMAIL SENT SUCCESSFULLY VIA BREVO API")
+            return True
+        else:
+            print(f"BREVO API ERROR: {response.status_code} - {response.text}")
+            return False
 
     except Exception as e:
-
-        print("EMAIL ERROR")
-
+        print("EMAIL TRANSMISSION API ERROR")
         print(e)
-
         return False
 
 
@@ -259,52 +202,31 @@ def training():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-
     if request.method == "POST":
-
         name = request.form.get("name")
         email = request.form.get("email")
         phone = request.form.get("phone")
         message = request.form.get("message")
 
-        db_saved = save_query_to_db(
-            name,
-            email,
-            phone,
-            message
-        )
-
+        db_saved = save_query_to_db(name, email, phone, message)
         email_sent = False
 
         try:
-
-            email_sent = send_query_email(
-                name,
-                email,
-                phone,
-                message
-            )
-
+            email_sent = send_query_email(name, email, phone, message)
         except Exception as e:
-
-            print(e)
+            print("Contact routing email trigger error:", e)
 
         if db_saved and email_sent:
-
             flash(
                 "Thank you! Your enquiry has been submitted successfully.",
                 "success"
             )
-
         elif db_saved:
-
             flash(
                 "Your enquiry has been saved successfully. Email notification could not be sent.",
                 "warning"
             )
-
         else:
-
             flash(
                 "Something went wrong. Please try again later.",
                 "danger"
@@ -313,40 +235,24 @@ def contact():
         return redirect(url_for("contact"))
 
     return render_template("contact.html")
+
+
 # ============================================================
 # ADMIN LOGIN
 # ============================================================
 
 @app.route("/admin_login", methods=["GET", "POST"])
 def admin_login():
-
     if request.method == "POST":
-
         username = request.form.get("username")
         password = request.form.get("password")
 
-        if (
-            username == ADMIN_USERNAME and
-            password == ADMIN_PASSWORD
-        ):
-
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session["admin_logged_in"] = True
-
-            flash(
-                "Login Successful.",
-                "success"
-            )
-
-            return redirect(
-                url_for("admin_dashboard")
-            )
-
+            flash("Login Successful.", "success")
+            return redirect(url_for("admin_dashboard"))
         else:
-
-            flash(
-                "Invalid Username or Password.",
-                "danger"
-            )
+            flash("Invalid Username or Password.", "danger")
 
     return render_template("admin_login.html")
 
@@ -357,42 +263,22 @@ def admin_login():
 
 @app.route("/admin_dashboard")
 def admin_dashboard():
-
     if not session.get("admin_logged_in"):
-
-        flash(
-            "Please login first.",
-            "warning"
-        )
-
-        return redirect(
-            url_for("admin_login")
-        )
+        flash("Please login first.", "warning")
+        return redirect(url_for("admin_login"))
 
     conn = sqlite3.connect(DB_NAME)
-
     conn.row_factory = sqlite3.Row
-
     cursor = conn.cursor()
-
     cursor.execute("""
-
         SELECT *
-
         FROM customer_queries
-
         ORDER BY timestamp DESC
-
     """)
-
     queries = cursor.fetchall()
-
     conn.close()
 
-    return render_template(
-        "admin_dashboard.html",
-        queries=queries
-    )
+    return render_template("admin_dashboard.html", queries=queries)
 
 
 # ============================================================
@@ -401,48 +287,24 @@ def admin_dashboard():
 
 @app.route("/delete_query/<int:query_id>")
 def delete_query(query_id):
-
     if not session.get("admin_logged_in"):
-
-        return redirect(
-            url_for("admin_login")
-        )
+        return redirect(url_for("admin_login"))
 
     try:
-
         conn = sqlite3.connect(DB_NAME)
-
         cursor = conn.cursor()
-
         cursor.execute(
-
             "DELETE FROM customer_queries WHERE id=?",
-
             (query_id,)
-
         )
-
         conn.commit()
-
         conn.close()
-
-        flash(
-            "Customer enquiry deleted successfully.",
-            "success"
-        )
-
+        flash("Customer enquiry deleted successfully.", "success")
     except Exception as e:
-
         print(e)
+        flash("Unable to delete enquiry.", "danger")
 
-        flash(
-            "Unable to delete enquiry.",
-            "danger"
-        )
-
-    return redirect(
-        url_for("admin_dashboard")
-    )
+    return redirect(url_for("admin_dashboard"))
 
 
 # ============================================================
@@ -451,20 +313,10 @@ def delete_query(query_id):
 
 @app.route("/admin/logout")
 def admin_logout():
+    session.pop("admin_logged_in", None)
+    flash("Logged out successfully.", "success")
+    return redirect(url_for("admin_login"))
 
-    session.pop(
-        "admin_logged_in",
-        None
-    )
-
-    flash(
-        "Logged out successfully.",
-        "success"
-    )
-
-    return redirect(
-        url_for("admin_login")
-    )
 
 # ============================================================
 # ERROR HANDLERS
@@ -481,22 +333,11 @@ def internal_server_error(error):
 
 
 # ============================================================
-# BEFORE REQUEST (OPTIONAL)
-# ============================================================
-
-@app.before_request
-def before_request():
-    pass
-
-
-# ============================================================
 # APPLICATION START
 # ============================================================
 
 if __name__ == "__main__":
-
     port = int(os.environ.get("PORT", 5000))
-
     app.run(
         host="0.0.0.0",
         port=port,
