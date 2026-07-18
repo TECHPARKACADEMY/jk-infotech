@@ -32,8 +32,8 @@
                 <div style="background-color: #f4f8ff; padding: 12px; border-radius: 50%; color: #0b63e0;"><i class="fa-solid fa-envelope" style="font-size: 18px; width: 20px; text-align: center;"></i></div>
                 <div>
                     <h4 style="margin: 0 0 5px 0; color: #002060; font-size: 16px;">Email Channels</h4>
-                    <p style="margin: 0; font-size: 13px; color: #666;">info@jkinfotechindia.com</p>
-                    <p style="margin: 0; font-size: 13px; color: #666;">enquiry@jkinfotechindia.com</p>
+                    <!-- Updated to your new domain details -->
+                    <p style="margin: 0; font-size: 13px; color: #666;">info@jkinfotech.in</p>
                 </div>
             </div>
 
@@ -49,27 +49,59 @@
         <div style="flex: 1.2; min-width: 320px; background-color: #f8fafc; padding: 35px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);" data-aos="fade-left">
             <h3 style="margin-top: 0; margin-bottom: 20px; color: #002060; font-size: 20px;">Corporate Service Registry</h3>
             
-            <form id="corporateContactFormHub" action="#" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+            <!-- ==========================================================================
+               ✨ FLASH MESSAGES ALERTS MODULE FOR USER NOTIFICATION FEEDBACK
+               ========================================================================== -->
+            <!-- ==========================================================================
+               ✨ CSS PARSER SAFE FLASH MESSAGES MODULE
+               ========================================================================== -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, msg in messages %}
+                        
+                        {% if category == 'success' %}
+                            <div style="padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 13px; font-weight: 600; background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc;">
+                                {{ msg }}
+                            </div>
+                        {% elif category == 'warning' %}
+                            <div style="padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 13px; font-weight: 600; background-color: #fff3cd; color: #664d03; border: 1px solid #ffecb5;">
+                                {{ msg }}
+                            </div>
+                        {% else %}
+                            <div style="padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 13px; font-weight: 600; background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7;">
+                                {{ msg }}
+                            </div>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <!-- Form Action Route Setup linked to backend request engine -->
+            <form id="corporateContactFormHub" action="{{ url_for('contact') }}" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
                 
                 <div style="display: flex; flex-direction: column; gap: 5px;">
                     <label style="font-size: 12px; font-weight: 700; color: #333; text-transform: uppercase;">Full Client Name / Organization</label>
-                    <input type="text" id="clientNameInput" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;" placeholder="Enter Your Full Name" required>
+                    <!-- Added name="name" attribute -->
+                    <input type="text" id="clientNameInput" name="name" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;" placeholder="Enter Your Full Name" required>
                 </div>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
                     <div style="display: flex; flex-direction: column; gap: 5px;">
                         <label style="font-size: 12px; font-weight: 700; color: #333; text-transform: uppercase;">Phone Number</label>
-                        <input type="tel" id="clientPhoneInput" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;" placeholder="Enter Mobile Number" required>
+                        <!-- Added name="phone" attribute -->
+                        <input type="tel" id="clientPhoneInput" name="phone" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;" placeholder="Enter Mobile Number" required>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 5px;">
                         <label style="font-size: 12px; font-weight: 700; color: #333; text-transform: uppercase;">Email Address</label>
-                        <input type="email" id="clientEmailInput" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;" placeholder="Enter Email Profile" required>
+                        <!-- Added name="email" attribute -->
+                        <input type="email" id="clientEmailInput" name="email" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;" placeholder="Enter Email Profile" required>
                     </div>
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 5px;">
                     <label style="font-size: 12px; font-weight: 700; color: #333; text-transform: uppercase;">Required Deployment Area</label>
-                    <select id="deploymentAreaSelect" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background-color: white; outline: none;">
+                    <!-- Added name="deployment" to handle categories optionally if needed -->
+                    <select id="deploymentAreaSelect" name="deployment" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background-color: white; outline: none;">
                         <option>Premium Hardware / Systems Purchase</option>
                         <option>CCTV Surveillance Installation Setup</option>
                         <option>Enterprise Network Layout Architecture</option>
@@ -80,7 +112,8 @@
 
                 <div style="display: flex; flex-direction: column; gap: 5px;">
                     <label style="font-size: 12px; font-weight: 700; color: #333; text-transform: uppercase;">Structural Requirements Description</label>
-                    <textarea id="requirementsDescInput" rows="4" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-family: inherit; resize: vertical; outline: none;" placeholder="Describe Your Requirement Detail..." required></textarea>
+                    <!-- Added name="message" attribute -->
+                    <textarea id="requirementsDescInput" name="message" rows="4" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-family: inherit; resize: vertical; outline: none;" placeholder="Describe Your Requirement Detail..." required></textarea>
                 </div>
 
                 <button type="submit" style="background-color: #0b63e0; color: white; border: none; padding: 12px; border-radius: 50px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-top: 10px; transition: background 0.2s;" onmouseenter="this.style.backgroundColor='#004cb8'" onmouseleave="this.style.backgroundColor='#0b63e0'">
@@ -90,41 +123,5 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.getElementById('corporateContactFormHub');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Stems natural page reloads completely
-
-            // Retrieve input values from Document target metrics
-            const clientName = document.getElementById('clientNameInput').value;
-            const clientPhone = document.getElementById('clientPhoneInput').value;
-            const clientEmail = document.getElementById('clientEmailInput').value;
-            const selectedArea = document.getElementById('deploymentAreaSelect').value;
-            const messageDesc = document.getElementById('requirementsDescInput').value;
-
-            // Target corporate phone config parameters
-            const whatsappBusinessNumber = "918056828383";
-            
-            // Generate clean structured markdown payload template for whatsapp text channel
-            const structuredLeadMessage = `🚨 *NEW CORPORATE SERVICE ENQUIRY* 🚨\n\n` +
-                `👤 *Client Name:* ${clientName}\n` +
-                `📞 *Phone Number:* ${clientPhone}\n` +
-                `✉️ *Email Address:* ${clientEmail}\n` +
-                `🛠️ *Required Area:* ${selectedArea}\n\n` +
-                `📝 *Description Details:*\n${messageDesc}`;
-
-            // Build structural dynamic encoded URI redirect string destination
-            const secureWhatsAppTargetUrl = `https://wa.me/${whatsappBusinessNumber}?text=${encodeURIComponent(structuredLeadMessage)}`;
-            
-            // Route viewport forward into separate clean chat link tab window instant
-            window.open(secureWhatsAppTargetUrl, '_blank');
-        });
-    }
-});
-</script>
 
 {% endblock %}
