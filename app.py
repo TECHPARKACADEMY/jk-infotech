@@ -87,7 +87,8 @@ def send_query_email(customer_name, customer_email, customer_phone, customer_msg
         """
         msg.attach(MIMEText(body, 'plain'))
         
-        server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
+        server = smtplib.SMTP("smtp.titan.email", 587) # Port 587 direct injection
+        server.starttls() # Secure connection-ai start seiyum line
         server.login(SENDER_EMAIL, SENDER_PASSWORD)
         server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, msg.as_string())
         server.quit()
