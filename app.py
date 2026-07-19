@@ -116,10 +116,10 @@ init_db()
 
 def send_query_email(customer_name, customer_email, customer_phone, customer_msg):
     try:
-        # 🔥 TEST SUCCESS! Pulling the key named JK (Brevo API Key) from your Render screen
-        api_key = os.environ.get("JK")
+        # 🚀 Reading using the clean, exact named variable from Render config setup screen
+        api_key = os.environ.get("BREVO_API_KEY")
         if not api_key:
-            print("ERROR: JK ENVIRONMENT VARIABLE (BREVO API KEY) MISSING")
+            print("ERROR: BREVO_API_KEY ENVIRONMENT VARIABLE MISSING")
             return False
 
         url = "https://api.brevo.com/v3/smtp/email"
