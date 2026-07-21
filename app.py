@@ -1,6 +1,6 @@
 import os
 import sqlite3
-import requests  # Clean Web HTTP API calls tracking bypass for Render
+import requests
 from flask import (
     Flask,
     render_template,
@@ -8,7 +8,8 @@ from flask import (
     redirect,
     url_for,
     flash,
-    session,Response
+    session,
+    Response
 )
 
 try:
@@ -56,9 +57,9 @@ ADMIN_PASSWORD = os.environ.get(
 # BREVO EMAIL API CONFIGURATION
 # ============================================================
 
-# SENDER_EMAIL matches verified identity info@jkinfotech.in
 SENDER_EMAIL = os.environ.get("TITAN_EMAIL", "info@jkinfotech.in")
 RECEIVER_EMAIL = "info@jkinfotech.in"
+
 
 # ============================================================
 # SITEMAP & ROBOTS FOR GOOGLE SEARCH CONSOLE
@@ -69,27 +70,27 @@ def sitemap():
     sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jkinfotech.in/</loc>
+    <loc>https://www.jkinfotech.in/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://jkinfotech.in/about</loc>
+    <loc>https://www.jkinfotech.in/about</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jkinfotech.in/services</loc>
+    <loc>https://www.jkinfotech.in/services</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jkinfotech.in/products</loc>
+    <loc>https://www.jkinfotech.in/products</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jkinfotech.in/training</loc>
+    <loc>https://www.jkinfotech.in/training</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jkinfotech.in/contact</loc>
+    <loc>https://www.jkinfotech.in/contact</loc>
     <priority>0.8</priority>
   </url>
 </urlset>"""
@@ -100,7 +101,7 @@ def sitemap():
 def robots():
     robots_txt = """User-agent: *
 Allow: /
-Sitemap: https://jkinfotech.in/sitemap.xml
+Sitemap: https://www.jkinfotech.in/sitemap.xml
 """
     return Response(robots_txt, mimetype="text/plain")
 
@@ -129,7 +130,6 @@ def init_db():
         print("DB Init Warning:", e)
 
 
-
 # ============================================================
 # SAVE QUERY TO DATABASE
 # ============================================================
@@ -147,14 +147,11 @@ def save_query_to_db(name, email, phone, message):
         conn.close()
         return True
     except Exception as e:
-        print("DATABASE ERROR")
-        print(e)
+        print("DATABASE ERROR:", e)
         return False
 
 
-# ============================================================
-# INITIALIZE DATABASE
-# ============================================================
+# Initialize database safely
 init_db()
 
 
@@ -164,7 +161,6 @@ init_db()
 
 def send_query_email(customer_name, customer_email, customer_phone, customer_msg):
     try:
-        # 🚀 Reading using the clean, exact named variable from Render config setup screen
         api_key = os.environ.get("BREVO_API_KEY")
         if not api_key:
             print("ERROR: BREVO_API_KEY ENVIRONMENT VARIABLE MISSING")
@@ -199,7 +195,6 @@ Message:
             "textContent": body_content
         }
 
-        # Secure HTTP protocol triggers to bypass Render timeout walls
         response = requests.post(url, json=payload, headers=headers, timeout=15)
         
         if response.status_code in [200, 201, 202]:
@@ -210,17 +205,18 @@ Message:
             return False
 
     except Exception as e:
-        print("EMAIL TRANSMISSION API ERROR")
-        print(e)
+        print("EMAIL TRANSMISSION API ERROR:", e)
         return False
 
 
 # ============================================================
 # USER PAGES
 # ============================================================
+
 @app.route("/healthz")
 def health_check():
     return "OK", 200
+
 
 @app.route("/")
 def index():
