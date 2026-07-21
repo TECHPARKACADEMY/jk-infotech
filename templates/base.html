@@ -3,11 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}JK InfoTech - Corporate Hardware Showroom & Services{% endblock %}</title>
+    
+    <!-- 🚀 SEO Meta Tags for Google Ranking -->
+    <title>{% block title %}JK InfoTech - Computer Hardware Sales, Laptop Service & CCTV Installation{% endblock %}</title>
+    <meta name="description" content="JK InfoTech is your trusted destination for computer hardware sales, laptop repair services, desktop troubleshooting, printer service, and complete CCTV camera installation and maintenance.">
+    <meta name="keywords" content="JK InfoTech, Computer Sales and Service, Laptop Repair Shop, CCTV Installation Near Me, Desktop Service, Hardware Showroom, Security Systems">
+    <meta name="author" content="JK InfoTech">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Tags for Social Media Sharing -->
+    <meta property="og:title" content="JK InfoTech - Hardware Sales & CCTV Solutions">
+    <meta property="og:description" content="Best computer repair, laptop service, hardware accessories, and HD CCTV camera installation services.">
+    <meta property="og:type" content="website">
+
+    <!-- Stylesheets & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- 📍 Google Schema Markup for Local Business (Helps rank #1 in Local Searches) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ComputerRepairService",
+      "name": "JK InfoTech",
+      "url": "https://www.jkinfotech.in",
+      "logo": "https://www.jkinfotech.in/static/images/abc.png",
+      "description": "Professional Computer Hardware Sales, Laptop Repairs, Desktop Upgrades, and CCTV Camera Installation Services.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Hardware & Security Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Laptop & Desktop Repair"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "CCTV Camera Installation & Maintenance"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Computer Hardware & Accessories Sales"}}
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
 

@@ -3,20 +3,28 @@
 {% block content %}
 
 <!-- Hero Banner with Full Image Dynamic Slideshow -->
+{% extends 'base.html' %}
+
+{% block title %}JK InfoTech - Best Computer Hardware Sales, Laptop Repair & CCTV Camera Installation{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner with Full Image Dynamic Slideshow -->
 <section class="hero" data-aos="zoom-out" id="heroSectionHub">
     <div class="hero-bg-slides">
         <!-- Added explicit index tracking flags for script level DOM validation -->
         <div class="hero-slide active" data-index="0" style="background-image: url('/static/images/abc.png');"></div>
         <div class="hero-slide" data-index="1" style="background-image: url('/static/images/ll.png');"></div>
         <div class="hero-slide" data-index="2" style="background-image: url('/static/images/four.jfif');"></div>
-        <div class="hero-slide" data-index="3" style="background-image: url('/static/images/bgr3.png');"></div> <!-- This is the target 4th image (Index 3) -->
+        <div class="hero-slide" data-index="3" style="background-image: url('/static/images/bgr3.png');"></div> <!-- Target 4th image (Index 3) -->
     </div>
     
-    <!-- Wrapper layer gets smooth fade transitions via CSS variables -->
-    <div class="hero-content-wrapper" id="heroContentData"><br><br><br><br>
-        <h1>Welcome To JK InfoTech</h1>
-        <p>Premium Multi-Brand Computer Showroom, Advanced System Builders, High-Tier CCTV Setup, and Enterprise-Grade Network Architectures.</p>
-        <a href="{{ url_for('products') }}" class="btn btn-primary">Explore Showroom</a>
+    <!-- Hero Text Content with SEO Headings -->
+    <div class="hero-content" data-aos="fade-up">
+        <h1>JK InfoTech</h1>
+        <h2>Computer Sales, Hardware Repair & CCTV Security Installation</h2>
+        <p>Your One-Stop Shop for Laptops, Desktops, PC Accessories, Networking, and HD Security Camera Systems.</p>
+        <a href="/contact" class="btn-primary">Get Free Quote</a>
     </div>
 </section>
 
