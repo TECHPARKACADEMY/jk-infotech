@@ -5,21 +5,140 @@
 
 {% block content %}
 
+<!-- Custom Styles for Centered Content Without Main Heading -->
+<style>
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Exactly Center Vertically & Horizontally */
+    padding: 0 20px;
+    background: #000;
+}
+
+.hero-bg-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2.5s ease-in-out; 
+    transform: none !important;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: none !important;
+}
+
+/* HERO CONTENT STYLING (CENTER ALIGNED) */
+.hero-content-centered {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: #ffffff;
+    max-width: 850px;
+    margin-top: 180px; /* Push down slightly to highlight background logo */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Sub Heading / Core Tagline */
+.hero-content-centered h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #00d4ff;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Paragraph Text */
+.hero-content-centered p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #ffffff;
+    max-width: 780px;
+    margin: 0 auto 25px auto;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Oval Shape Primary Button */
+.btn-primary {
+    display: inline-block;
+    padding: 13px 42px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0a0a0a;
+    background: linear-gradient(135deg, #00d4ff, #0088ff);
+    border: none;
+    border-radius: 50px; /* Oval Shape */
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ffffff, #00d4ff);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.6);
+}
+
+/* Hide element logic for 4th slide */
+.hide-element {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-content-centered {
+        margin-top: 100px;
+    }
+    .hero-content-centered h2 {
+        font-size: 1.2rem;
+    }
+    .hero-content-centered p {
+        font-size: 0.95rem;
+    }
+    .btn-primary {
+        padding: 10px 32px;
+    }
+}
+</style>
+
 <!-- Hero Banner with Full Image Dynamic Slideshow -->
-<section class="hero" data-aos="zoom-out" id="heroSectionHub">
+<section class="hero" id="heroSectionHub">
     <div class="hero-bg-slides">
-        <!-- Added explicit index tracking flags for script level DOM validation -->
         <div class="hero-slide active" data-index="0" style="background-image: url('/static/images/abc.png');"></div>
         <div class="hero-slide" data-index="1" style="background-image: url('/static/images/ll.png');"></div>
         <div class="hero-slide" data-index="2" style="background-image: url('/static/images/four.jfif');"></div>
-        <div class="hero-slide" data-index="3" style="background-image: url('/static/images/bgr3.png');"></div> <!-- Target 4th image (Index 3) -->
+        <div class="hero-slide" data-index="3" style="background-image: url('/static/images/bgr3.png');"></div>
     </div>
-    
-    <!-- Hero Text Content with SEO Headings -->
-    <div class="hero-content" data-aos="fade-up">
-        <h1>JK InfoTech</h1>
+
+    <!-- Centered Content (No Heading) -->
+    <div class="hero-content-centered" id="heroContentCentered" data-aos="fade-up">
         <h2>Computer Sales, Hardware Repair & CCTV Security Installation</h2>
-        <p>Your One-Stop Shop for Laptops, Desktops, PC Accessories, Networking, and HD Security Camera Systems.</p>
+        <p>Your One-Stop Destination for Laptops, Desktops, Premium PC Accessories, High-Speed Networking, and HD Security Camera Systems.</p>
         <a href="/contact" class="btn-primary">Get Free Quote</a>
     </div>
 </section>
@@ -53,7 +172,7 @@
 </section>
 
 <section class="section-padding">
-    <h2 class="section-title" data-aos="fade-up">Why Choose TechCore</h2>
+    <h2 class="section-title" data-aos="fade-up">Why Choose JK InfoTech</h2>
     <div class="grid-4">
         <div class="premium-card" data-aos="zoom-in" data-aos-delay="100">
             <i class="fa-solid fa-award"></i>
@@ -109,5 +228,31 @@
         <img src="{{ url_for('static', filename='images/hikvision.jfif') }}" alt="Hikvision">
     </div>
 </section>
+
+<!-- JavaScript Script for Slow Smooth Slideshow & Content Toggle -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".hero-slide");
+    const contentCentered = document.getElementById("heroContentCentered");
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove("active");
+
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        slides[currentSlide].classList.add("active");
+
+        // 4th slide (Index 3 - bgr3.png) -> Hide Content
+        if (currentSlide === 3) {
+            contentCentered.classList.add("hide-element");
+        } else {
+            contentCentered.classList.remove("hide-element");
+        }
+    }
+
+    setInterval(nextSlide, 5000);
+});
+</script>
 
 {% endblock %}
