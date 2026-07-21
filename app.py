@@ -8,7 +8,7 @@ from flask import (
     redirect,
     url_for,
     flash,
-    session
+    session,Response
 )
 
 try:
@@ -59,6 +59,50 @@ ADMIN_PASSWORD = os.environ.get(
 # SENDER_EMAIL matches verified identity info@jkinfotech.in
 SENDER_EMAIL = os.environ.get("TITAN_EMAIL", "info@jkinfotech.in")
 RECEIVER_EMAIL = "info@jkinfotech.in"
+
+# ============================================================
+# SITEMAP & ROBOTS FOR GOOGLE SEARCH CONSOLE
+# ============================================================
+
+@app.route("/sitemap.xml")
+def sitemap():
+    sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jkinfotech.in/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://jkinfotech.in/about</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jkinfotech.in/services</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jkinfotech.in/products</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jkinfotech.in/training</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jkinfotech.in/contact</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>"""
+    return Response(sitemap_xml, mimetype="application/xml")
+
+
+@app.route("/robots.txt")
+def robots():
+    robots_txt = """User-agent: *
+Allow: /
+Sitemap: https://jkinfotech.in/sitemap.xml
+"""
+    return Response(robots_txt, mimetype="text/plain")
 
 
 # ============================================================
