@@ -5,12 +5,13 @@
 
 {% block content %}
 
-<!-- Custom Styles for Centered Content Without Main Heading -->
+<!-- Custom Styles for Centered Content & Enhanced Media Queries -->
 <style>
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100dvh; /* Dynamic height for mobile browsers */
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -54,7 +55,7 @@
     text-align: center;
     color: #ffffff;
     max-width: 850px;
-    margin-top: 180px; /* Push down slightly to highlight background logo */
+    margin-top: 140px; /* Push down slightly to highlight background logo */
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 
@@ -109,19 +110,77 @@
     transform: translateY(20px);
 }
 
-/* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
+/* ========================================================
+   📱 FULL RESPONSIVE MEDIA QUERIES
+   ======================================================== */
+
+/* Tablets & Small Laptops (Max Width: 992px) */
+@media (max-width: 992px) {
     .hero-content-centered {
         margin-top: 100px;
+        max-width: 700px;
     }
     .hero-content-centered h2 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+    }
+    .hero-content-centered p {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Devices & Tablets (Max Width: 768px) */
+@media (max-width: 768px) {
+    .hero {
+        padding: 0 15px;
+    }
+    .hero-content-centered {
+        margin-top: 80px;
+    }
+    .hero-content-centered h2 {
+        font-size: 1.25rem;
+        line-height: 1.4;
+        margin-bottom: 12px;
     }
     .hero-content-centered p {
         font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
     }
     .btn-primary {
-        padding: 10px 32px;
+        padding: 11px 32px;
+        font-size: 0.95rem;
+    }
+    .brand-logos img {
+        max-width: 80px;
+        margin: 10px;
+    }
+}
+
+/* Small Smart Phones (Max Width: 480px) */
+@media (max-width: 480px) {
+    .hero-content-centered {
+        margin-top: 60px;
+    }
+    .hero-content-centered h2 {
+        font-size: 1.1rem;
+    }
+    .hero-content-centered p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        padding: 10px 26px;
+        font-size: 0.88rem;
+    }
+}
+
+/* Landscape Mode for Mobiles */
+@media (max-height: 500px) {
+    .hero-content-centered {
+        margin-top: 40px;
+    }
+    .hero-content-centered p {
+        display: none; /* Hide paragraph on low-height screens to fit button */
     }
 }
 </style>
